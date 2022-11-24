@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
                         String response = "";
                         try {
                             response = getAPI();
-                            JSONObject rootJSON = new JSONObject(response);
-                            ip = rootJSON.getString("passcode");
+                            JSONArray json2 = new JSONArray(response);
+                            JSONObject json3 = json2.getJSONObject(0);
+                            ip = json3.getString("passcode");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
